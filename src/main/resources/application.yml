@@ -1,0 +1,71 @@
+#spring:
+#  config:
+#    import:
+#      - classpath:/application_course.yml
+#      - classpath:/application_enrollment.yml
+#
+#  application:
+#    name: "UKG-service"
+#
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: pg
+#    password: ''
+#    driverClassName: org.h2.Driver
+#
+#  h2:
+#    console:
+#      enabled: true
+#
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#    database-platform: org.hibernate.dialect.H2Dialect
+#
+#  management:
+#    endpoints:
+#      web:
+#        exposure:
+#          include: "*"
+#
+#feign:
+#  client:
+#    config:
+#      UKG-service:
+#        url: http://localhost:8090  # URL for the Employee service
+#      courses:
+#        url: http://localhost:8088  # URL for the Course service
+#      enrollment:
+#        url: http://localhost:8089  # URL for the Enrollment service
+
+#for start configuration of server port
+server:
+  port: 8088
+spring:
+  application:
+    name: "courses"
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: pg
+    password: ''
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+build:
+  version: 3.0.0
